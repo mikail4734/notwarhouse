@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 19 Mar 2026, 11:10:25
+-- Üretim Zamanı: 09 Nis 2026, 23:54:36
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -24,33 +24,118 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `notlar`
+-- Tablo için tablo yapısı `begeni_verileri`
 --
 
-CREATE TABLE `notlar` (
-  `id` int(11) NOT NULL,
-  `baslik` varchar(255) NOT NULL,
-  `icerik` text NOT NULL,
-  `kategori` varchar(100) DEFAULT NULL,
-  `yazar_adi` varchar(100) DEFAULT NULL,
-  `tarih` timestamp NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `begeni_verileri` (
+  `note_id` int(11) NOT NULL,
+  `likes` int(11) DEFAULT 0,
+  `dislikes` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Tablo döküm verisi `notlar`
+-- Tablo döküm verisi `begeni_verileri`
 --
 
-INSERT INTO `notlar` (`id`, `baslik`, `icerik`, `kategori`, `yazar_adi`, `tarih`) VALUES
-(1, 'notÖdevi1', 'notları tutabilecek bir web sitesi', 'yazılım', 'mikail', '2026-03-19 08:35:02');
+INSERT INTO `begeni_verileri` (`note_id`, `likes`, `dislikes`) VALUES
+(1, 2, 0),
+(2, 1, 0),
+(3, 3, 0),
+(4, 0, 1),
+(5, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `etkilesim_kayitlari`
+--
+
+CREATE TABLE `etkilesim_kayitlari` (
+  `id` int(11) NOT NULL,
+  `note_id` int(11) DEFAULT NULL,
+  `user_ip` varchar(45) DEFAULT NULL,
+  `action_type` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `etkilesim_kayitlari`
+--
+
+INSERT INTO `etkilesim_kayitlari` (`id`, `note_id`, `user_ip`, `action_type`) VALUES
+(1, 4, '::1', 'dislike');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `notes`
+--
+
+CREATE TABLE `notes` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `notes`
+--
+
+INSERT INTO `notes` (`id`, `title`, `content`, `created_at`) VALUES
+(1, 'v dxvx', '<p>vxdf</p>', '2026-04-05 18:22:45'),
+(2, 'ders2', '<p>meraba</p>', '2026-04-05 18:49:01'),
+(3, 'csa', '<p>csacdsa</p>', '2026-04-05 18:50:58'),
+(4, 'facfzs', '<p>szacfaszfc</p>', '2026-04-06 12:39:18'),
+(5, 'swqedxq', '<p>dwedcw</p>', '2026-04-08 11:24:20'),
+(6, 'vfdv', '<p>veeevve</p>', '2026-04-09 00:25:43'),
+(7, 'vfdv', '<p>veeevve</p>', '2026-04-09 00:25:43');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `reset_code` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `reset_code`) VALUES
+(1, 'mikailcelik4734@gmail.com', '4747', NULL);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
 --
 
 --
--- Tablo için indeksler `notlar`
+-- Tablo için indeksler `begeni_verileri`
 --
-ALTER TABLE `notlar`
+ALTER TABLE `begeni_verileri`
+  ADD PRIMARY KEY (`note_id`);
+
+--
+-- Tablo için indeksler `etkilesim_kayitlari`
+--
+ALTER TABLE `etkilesim_kayitlari`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -58,9 +143,21 @@ ALTER TABLE `notlar`
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `notlar`
+-- Tablo için AUTO_INCREMENT değeri `etkilesim_kayitlari`
 --
-ALTER TABLE `notlar`
+ALTER TABLE `etkilesim_kayitlari`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
