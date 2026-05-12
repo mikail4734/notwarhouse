@@ -9,15 +9,70 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <nav class="bg-white border-b px-6 py-4 sticky top-0 z-50 shadow-sm">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <a href="html2.html" class="text-slate-400 hover:text-indigo-600 transition text-xl"><i class="fas fa-arrow-left"></i></a>
-                <h1 class="font-bold text-xl text-indigo-600 italic">NoteShare</h1>
+    <nav class="bg-[#4f46e5] px-6 py-3.5 shadow-lg flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-4">
+            <a href="html2.html" class="flex items-center space-x-2 shrink-0">
+                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-book-open text-white text-sm"></i>
+                </div>
+                <span class="text-white font-black tracking-tighter text-lg hidden sm:block">NoteShare</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-1 ml-2">
+                <a href="html2.html" class="text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/10 text-sm font-medium transition">Ana Sayfa</a>
+                <a href="ayarlar.html" class="text-white font-semibold px-3 py-2 rounded-lg bg-white/10 text-sm transition">Ayarlar</a>
             </div>
-            <div class="flex items-center space-x-3">
-                <span class="text-sm font-medium text-slate-500 hidden md:block">Mikail</span>
-                <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">M</div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <a href="notlar.html" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl border border-white/30 text-sm font-bold transition hidden sm:flex items-center">
+                <i class="fas fa-plus mr-1.5 text-xs"></i> Not Ekle
+            </a>
+            <div class="relative">
+                <button id="notifBtn" onclick="toggleNotifications()" class="relative w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition">
+                    <i class="fas fa-bell text-white text-sm"></i>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[9px] font-bold text-white flex items-center justify-center">3</span>
+                </button>
+                <div id="notificationDropdown" class="hidden absolute right-0 top-12 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 z-50 overflow-hidden">
+                    <div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
+                        <h3 class="font-bold text-slate-900 text-sm">Bildirimler</h3>
+                        <span class="bg-indigo-100 text-indigo-600 text-xs font-bold px-2 py-0.5 rounded-full">3 Yeni</span>
+                    </div>
+                    <div class="divide-y divide-slate-50">
+                        <a href="#" class="flex items-start p-4 hover:bg-slate-50 transition">
+                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3 shrink-0 mt-0.5"><i class="fas fa-thumbs-up text-green-600 text-xs"></i></div>
+                            <div><p class="text-sm text-slate-700 font-medium">Notun beğenildi!</p><p class="text-xs text-slate-400 mt-0.5">2 dakika önce</p></div>
+                        </a>
+                        <a href="#" class="flex items-start p-4 hover:bg-slate-50 transition">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3 shrink-0 mt-0.5"><i class="fas fa-comment text-blue-600 text-xs"></i></div>
+                            <div><p class="text-sm text-slate-700 font-medium">Yeni yorum: "Çok yararlı"</p><p class="text-xs text-slate-400 mt-0.5">1 saat önce</p></div>
+                        </a>
+                        <a href="#" class="flex items-start p-4 hover:bg-slate-50 transition">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3 shrink-0 mt-0.5"><i class="fas fa-share text-indigo-600 text-xs"></i></div>
+                            <div><p class="text-sm text-slate-700 font-medium">Matematik notun paylaşıldı</p><p class="text-xs text-slate-400 mt-0.5">Dün</p></div>
+                        </a>
+                    </div>
+                    <div class="p-3 text-center border-t border-slate-50"><a href="#" class="text-indigo-600 text-xs font-bold hover:underline">Tüm bildirimleri gör</a></div>
+                </div>
+            </div>
+            <div class="relative">
+                <button id="profileBtn" onclick="toggleProfile()" class="flex items-center space-x-2 bg-white/10 hover:bg-white/20 rounded-xl px-3 py-2 transition">
+                    <div class="w-7 h-7 bg-indigo-300 rounded-lg flex items-center justify-center font-bold text-indigo-900 text-xs">M</div>
+                    <span class="text-white font-medium text-sm hidden sm:block">Mikail</span>
+                    <i class="fas fa-chevron-down text-white/60 text-[10px] hidden sm:block"></i>
+                </button>
+                <div id="profileDropdown" class="hidden absolute right-0 top-12 w-48 bg-white rounded-2xl shadow-2xl border border-slate-100 z-50 overflow-hidden">
+                    <div class="p-2">
+                        <a href="ayarlar.html" class="flex items-center space-x-3 px-4 py-3 rounded-xl bg-indigo-50 text-indigo-600 transition">
+                            <i class="fas fa-user-circle text-indigo-500 text-sm w-4"></i><span class="text-sm font-bold">Profilim</span>
+                        </a>
+                        <a href="ayarlar.html" class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition">
+                            <i class="fas fa-cog text-slate-400 text-sm w-4"></i><span class="text-sm font-medium">Ayarlar</span>
+                        </a>
+                        <hr class="my-1 border-slate-100 mx-2">
+                        <a href="giris.html" class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-50 text-red-500 transition">
+                            <i class="fas fa-sign-out-alt text-sm w-4"></i><span class="text-sm font-medium">Çıkış Yap</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -102,22 +157,33 @@
         </div>
     </main>
 
+    <footer class="bg-gray-900 text-gray-400 py-8 text-sm mt-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-3">
+                <div class="w-6 h-6 bg-indigo-600 rounded-md flex items-center justify-center">
+                    <i class="fas fa-book-open text-white text-xs"></i>
+                </div>
+                <span class="text-white font-bold text-sm">NoteShare</span>
+            </div>
+            <p class="mb-3">&copy; 2026 NoteShare - Tüm Hakları Saklıdır.</p>
+            <div class="space-x-4">
+                <a href="kosullar.html" class="hover:text-white transition">Kullanım Koşulları</a>
+                <a href="sozlesme.html" class="hover:text-white transition">Gizlilik Politikası</a>
+                <a href="bize_ulasın.html" class="hover:text-white transition">Bize Ulaşın</a>
+            </div>
+        </div>
+    </footer>
+
     <script>
         function showTab(tabName) {
-            // Tüm içerikleri gizle
             document.querySelectorAll('.settings-content').forEach(content => {
                 content.classList.add('hidden');
             });
-            // Tüm buton stillerini sıfırla
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-100');
                 btn.classList.add('bg-white', 'text-slate-500');
             });
-
-            // Seçilen sekmeyi göster
             document.getElementById(tabName + '-tab').classList.remove('hidden');
-            
-            // Tıklanan butonu aktif yap (event üzerinden seçilebilir ama burada basitleştirdik)
             const activeBtn = event.currentTarget;
             activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-100');
             activeBtn.classList.remove('bg-white', 'text-slate-500');
@@ -126,6 +192,25 @@
         function saveSettings() {
             alert("✅ Ayarlarınız başarıyla güncellendi!");
         }
+
+        function toggleNotifications() {
+            document.getElementById('profileDropdown').classList.add('hidden');
+            document.getElementById('notificationDropdown').classList.toggle('hidden');
+        }
+        function toggleProfile() {
+            document.getElementById('notificationDropdown').classList.add('hidden');
+            document.getElementById('profileDropdown').classList.toggle('hidden');
+        }
+        document.addEventListener('click', function(e) {
+            if (!document.getElementById('notifBtn').contains(e.target) &&
+                !document.getElementById('notificationDropdown').contains(e.target)) {
+                document.getElementById('notificationDropdown').classList.add('hidden');
+            }
+            if (!document.getElementById('profileBtn').contains(e.target) &&
+                !document.getElementById('profileDropdown').contains(e.target)) {
+                document.getElementById('profileDropdown').classList.add('hidden');
+            }
+        });
     </script>
 </body>
 </html>
